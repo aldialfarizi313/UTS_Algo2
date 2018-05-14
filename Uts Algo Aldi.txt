@@ -1,0 +1,58 @@
+program contohrecord_menggunakanprocedure;
+uses crt;
+type rekam=record
+     nim:string[10];
+     nama:string;
+     ip:real;
+     end;
+     larik=array[1..100] of rekam;
+
+var mhs:larik;
+    i,jummhs:byte;
+
+procedure isidata(var x:larik);
+var ya:boolean; jwb:char;
+
+begin
+{mengisi dengan repeat until}
+i:=0;
+ya:=true;
+repeat
+begin
+     i:=i+1;
+     writeln('mengisi data mahasiswa ke  ',i:4);
+     with x[i] do
+     begin
+          clrscr;
+          write('NIM    =  ');readln(nim);
+          write('NAMA   =  ');readln(nama);
+          write('IP     =  ');readln(ip);
+     end;
+     write('mau mengisi lagi(y/t)? ');readln(jwb);
+     if jwb <> 'y' then ya:=false;
+end
+until( not ya);
+ jummhs:=i;
+end;
+
+procedure tampil(var x:larik);
+
+begin
+ writeln;
+ writeln('------------------------------------------------------');
+ writeln(' NO        NIM               NAMA       IP');
+ WRITELN('------------------------------------------------------');
+  for i:=1 to jummhs do writeln(i:3,x[i].nim:6,x[i].nama:20,x[i].ip:10:2);
+ writeln('------------------------------------------------------');
+ readln;
+end;
+
+begin
+writeln(' contoh penggunaan procedure');
+writeln(' mengisi di procedure');
+isidata(mhs);
+writeln ('menampilkan di procedure');
+tampil(mhs);
+end.
+tampil(mhs);
+readln;
